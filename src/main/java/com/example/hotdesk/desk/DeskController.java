@@ -20,35 +20,35 @@ public class DeskController
     private final DeskService deskService;
 
     @PostMapping
-    public ResponseEntity<?> createDesk( @RequestBody @Valid DeskCreateDto dto )
+    public ResponseEntity<DeskResponseDto> createDesk( @RequestBody @Valid DeskCreateDto dto )
     {
         DeskResponseDto deskResponseDto = deskService.create( dto );
         return ResponseEntity.status( HttpStatus.CREATED ).body( deskResponseDto );
     }
 
     @GetMapping
-    public ResponseEntity<?> get( Pageable pageable, @RequestParam String predicate )
+    public ResponseEntity<Page<DeskResponseDto>> get( Pageable pageable, @RequestParam String predicate )
     {
         Page<DeskResponseDto> all = deskService.getAll( pageable, predicate );
         return ResponseEntity.ok( all );
     }
 
     @GetMapping( "/{id}" )
-    public ResponseEntity<?> get( @PathVariable Integer id )
+    public ResponseEntity<DeskResponseDto> get( @PathVariable Integer id )
     {
         DeskResponseDto deskResponseDto = deskService.getById( id );
         return ResponseEntity.ok( deskResponseDto );
     }
 
     @PutMapping( "/{id}" )
-    public ResponseEntity<?> get( @PathVariable Integer id, @Valid @RequestBody DeskUpdateDto dto )
+    public ResponseEntity<DeskResponseDto> get( @PathVariable Integer id, @Valid @RequestBody DeskUpdateDto dto )
     {
         DeskResponseDto deskResponseDto = deskService.update( id, dto );
         return ResponseEntity.ok( deskResponseDto );
     }
 
     @PatchMapping( "/{id}" )
-    public ResponseEntity<?> get( @PathVariable Integer id, @RequestBody DeskPatchDto dto ) throws NoSuchFieldException, IllegalAccessException
+    public ResponseEntity<DeskResponseDto> get( @PathVariable Integer id, @RequestBody DeskPatchDto dto ) throws NoSuchFieldException, IllegalAccessException
     {
         DeskResponseDto deskResponseDto = deskService.patch( id, dto );
         return ResponseEntity.ok( deskResponseDto );

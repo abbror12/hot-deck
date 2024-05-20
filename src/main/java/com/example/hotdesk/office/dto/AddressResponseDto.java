@@ -1,15 +1,21 @@
 package com.example.hotdesk.office.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import jakarta.validation.constraints.NotBlank;
+import lombok.*;
+import org.springframework.stereotype.Service;
 
-@EqualsAndHashCode( callSuper = true )
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AddressResponseDto extends AddressDto
-{
+public class AddressResponseDto {
     private Integer id;
+    @NotBlank
+    private String country;
+    @NotBlank
+    private String city;
+    @NotBlank
+    private String street;
+    @NotBlank
+    private String buildingNumber;
 }
